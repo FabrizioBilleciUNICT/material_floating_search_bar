@@ -107,30 +107,30 @@ class _HomeState extends State<Home> {
     return Consumer<SearchModel>(
       builder: (BuildContext context, SearchModel model, _) =>
           FloatingSearchBar(
-        automaticallyImplyBackButton: false,
-        controller: controller,
-        hint: 'חיפוש...',
-        iconColor: Colors.grey,
-        transitionDuration: const Duration(milliseconds: 800),
-        transitionCurve: Curves.easeInOutCubic,
-        physics: const BouncingScrollPhysics(),
-        axisAlignment: isPortrait ? 0.0 : -1.0,
-        openAxisAlignment: 0.0,
-        actions: actions,
-        progress: model.isLoading,
-        debounceDelay: const Duration(milliseconds: 500),
-        onQueryChanged: model.onQueryChanged,
-        onKeyEvent: (KeyEvent keyEvent) {
-          if (keyEvent.logicalKey == LogicalKeyboardKey.escape) {
-            controller.query = '';
-            controller.close();
-          }
-        },
-        scrollPadding: EdgeInsets.zero,
-        transition: CircularFloatingSearchBarTransition(spacing: 16),
-        builder: (BuildContext context, _) => buildExpandableBody(model),
-        body: buildBody(),
-      ),
+            automaticallyImplyBackButton: false,
+            controller: controller,
+            hint: 'Search...',
+            iconColor: Colors.grey,
+            transitionDuration: const Duration(milliseconds: 800),
+            transitionCurve: Curves.easeInOutCubic,
+            physics: const BouncingScrollPhysics(),
+            axisAlignment: isPortrait ? 0.0 : -1.0,
+            openAxisAlignment: 0.0,
+            actions: actions,
+            progress: model.isLoading,
+            debounceDelay: const Duration(milliseconds: 500),
+            onQueryChanged: model.onQueryChanged,
+            onKeyEvent: (KeyEvent keyEvent) {
+              if (keyEvent.logicalKey == LogicalKeyboardKey.escape) {
+                controller.query = '';
+                controller.close();
+              }
+            },
+            scrollPadding: EdgeInsets.zero,
+            transition: CircularFloatingSearchBarTransition(spacing: 16),
+            builder: (BuildContext context, _) => buildExpandableBody(model),
+            body: buildBody(),
+          ),
     );
   }
 
@@ -198,7 +198,7 @@ class _HomeState extends State<Home> {
             FloatingSearchBar.of(context)?.close();
             Future<void>.delayed(
               const Duration(milliseconds: 500),
-              () => model.clear(),
+                  () => model.clear(),
             );
           },
           child: Padding(
