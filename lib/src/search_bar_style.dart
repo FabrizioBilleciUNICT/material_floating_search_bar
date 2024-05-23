@@ -20,6 +20,7 @@ class FloatingSearchBarStyle {
     required this.openMaxWidth,
     required this.axisAlignment,
     required this.openAxisAlignment,
+    required this.progressHeight
   });
   final Color backgroundColor;
   final Color shadowColor;
@@ -35,6 +36,7 @@ class FloatingSearchBarStyle {
   final double? openMaxWidth;
   final double axisAlignment;
   final double openAxisAlignment;
+  final double progressHeight;
 
   FloatingSearchBarStyle scaleTo(FloatingSearchBarStyle b, double t) {
     return FloatingSearchBarStyle(
@@ -54,6 +56,7 @@ class FloatingSearchBarStyle {
       padding: EdgeInsets.lerp(padding, b.padding, t)!,
       border: BorderSide.lerp(border, b.border, t),
       borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
+      progressHeight: progressHeight
     );
   }
 
