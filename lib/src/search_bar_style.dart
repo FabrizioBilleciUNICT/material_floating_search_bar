@@ -77,6 +77,7 @@ class FloatingSearchAppBarStyle {
     required this.liftOnScrollElevation,
     required this.hintStyle,
     required this.queryStyle,
+    required this.progressHeight,
   });
   final Color accentColor;
   final Color backgroundColor;
@@ -90,6 +91,7 @@ class FloatingSearchAppBarStyle {
   final double liftOnScrollElevation;
   final TextStyle? hintStyle;
   final TextStyle? queryStyle;
+  final double progressHeight;
 
   FloatingSearchAppBarStyle scaleTo(FloatingSearchAppBarStyle b, double t) {
     return FloatingSearchAppBarStyle(
@@ -106,6 +108,7 @@ class FloatingSearchAppBarStyle {
       padding: EdgeInsets.lerp(padding, b.padding, t)!,
       hintStyle: TextStyle.lerp(hintStyle, b.hintStyle, t),
       queryStyle: TextStyle.lerp(queryStyle, b.queryStyle, t),
+      progressHeight: progressHeight
     );
   }
 

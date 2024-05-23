@@ -54,6 +54,7 @@ class FloatingSearchAppBar extends ImplicitlyAnimatedWidget {
     this.autocorrect = true,
     this.contextMenuBuilder,
     this.onKeyEvent,
+    this.progressHeight
   })  : assert(progress == null || (progress is num || progress is bool)),
         super(key, implicitDuration, implicitCurve);
 
@@ -186,6 +187,8 @@ class FloatingSearchAppBar extends ImplicitlyAnimatedWidget {
   final EditableTextContextMenuBuilder? contextMenuBuilder;
 
   final ValueChanged<KeyEvent>? onKeyEvent;
+
+  final double? progressHeight;
 
   static FloatingSearchAppBarState? of(BuildContext context) {
     return context.findAncestorStateOfType<FloatingSearchAppBarState>();
@@ -526,6 +529,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         _FloatingSearchProgressBar(
           progress: widget.progress,
           color: style.accentColor,
+          height: style.progressHeight,
         ),
       ],
     );
@@ -714,6 +718,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
           ).resolve(direction),
       hintStyle: widget.hintStyle,
       queryStyle: widget.titleStyle,
+      progressHeight: widget.progressHeight ?? 2.75
     );
   }
 
@@ -729,10 +734,12 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
 class _FloatingSearchProgressBar extends StatefulWidget {
   const _FloatingSearchProgressBar({
     required this.progress,
+    required this.height,
     required this.color,
   });
   final dynamic progress;
   final Color color;
+  final double height;
 
   @override
   _FloatingSearchProgressBarState createState() =>
@@ -768,8 +775,6 @@ class _FloatingSearchProgressBarState extends State<_FloatingSearchProgressBar>
 
   @override
   Widget build(BuildContext context) {
-    const double height = 2.75;
-
     final double? progressValue =
     progress is num ? (progress as num).toDouble().clamp(0.0, 1.0) : null;
 
@@ -777,7 +782,7 @@ class _FloatingSearchProgressBarState extends State<_FloatingSearchProgressBar>
       return Opacity(
         opacity: _controller.value,
         child: SizedBox(
-          height: height,
+          height: widget.height,
           child: LinearProgressIndicator(
             value: progressValue,
             semanticsValue: progressValue?.toStringAsFixed(2),
@@ -787,7 +792,7 @@ class _FloatingSearchProgressBarState extends State<_FloatingSearchProgressBar>
         ),
       );
     } else {
-      return const SizedBox(height: height);
+      return SizedBox(height: widget.height);
     }
   }
 
