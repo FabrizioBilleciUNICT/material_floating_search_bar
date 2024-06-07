@@ -602,7 +602,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
     Widget input;
     if (showTextInput) {
       input = Padding(
-        padding: const EdgeInsets.only(bottom: 6.0),
+        padding: EdgeInsets.zero,
         child: KeyboardListener(
           focusNode: FocusNode(),
           onKeyEvent: widget.onKeyEvent,
